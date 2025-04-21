@@ -59,5 +59,5 @@ class JogoDaForca:
             self.janela.destroy()
 
 if __name__ == "__main__":
-    palavra = "pegasus"  # Substitua pela palavra desejada
+    palavra = "mingau"  # Substitua pela palavra desejada
     JogoDaForca(palavra)
