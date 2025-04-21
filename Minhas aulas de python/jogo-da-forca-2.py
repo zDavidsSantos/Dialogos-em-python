@@ -3,7 +3,7 @@ from tkinter import messagebox
 import random
 
 # Lista de palavras para o jogo
-palavras = ["Nala", "Symba", "Mufasa", "Scar", "Timon", "Pumba", "Kiara", "Zazu", "Rafiki", "Sarabi","Kovu", "Taka", "Zira", "Nne", "Tano", "Janja", "Bunga", "Fuli", "Beshte", "Kion", "Rani"]
+palavras = ["nala", "simba", "mufasa", "scar", "timon", "pumba", "kiara", "zazu", "rafiki", "sarabi","kovu", "taka", "zira", "nne", "tano", "janja", "bunga", "fuli", "beshte", "kion", "rani"]
 
 # Seleciona uma palavra aleatória
 palavra_secreta = random.choice(palavras)
@@ -29,7 +29,7 @@ def verificar_letra():
     if letra in palavra_secreta:
         for i, l in enumerate(palavra_secreta):
             if l == letra:
-                palavra_oculta[i] = letra
+                palavra_oculta[i] = letra.upper()
         atualizar_palavra()
         if "_" not in palavra_oculta:
             messagebox.showinfo("Parabéns!", "Você venceu!")
@@ -58,7 +58,8 @@ def reiniciar_jogo():
 
 # Configuração da interface gráfica
 janela = tk.Tk()
-janela.title("Jogo da Forca")
+janela.title("Jogo da Forca Rei Leão")
+janela.geometry("400x300")
 
 lbl_titulo = tk.Label(janela, text="Jogo da Forca", font=("Arial", 20))
 lbl_titulo.pack(pady=10)
