@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 
+
+
 class JogoDaForca:
     def __init__(self, palavra_secreta):
         self.palavra_secreta = palavra_secreta.upper()
@@ -59,5 +61,6 @@ class JogoDaForca:
             self.janela.destroy()
 
 if __name__ == "__main__":
-    palavra = "mingau"  # Substitua pela palavra desejada
+    palavra = "mufasa"  # Substitua pela palavra desejada
     JogoDaForca(palavra)
+    
