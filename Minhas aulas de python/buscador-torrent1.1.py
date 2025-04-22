@@ -23,7 +23,7 @@ def search_torrents_gui():
             result_text.insert(tk.END, "Nenhum resultado encontrado.\n")
             return
         
-        for torrent in torrents[:10]:  # Limitar a 10 resultados
+        for torrent in torrents[:20]:  # Limitar a 20 resultados
             result_text.insert(tk.END, f"Nome: {torrent['name']}\n")
             result_text.insert(tk.END, f"Seeders: {torrent['seeders']}\n")
             result_text.insert(tk.END, f"Leechers: {torrent['leechers']}\n")
@@ -35,6 +35,7 @@ def search_torrents_gui():
 # Criar a interface gráfica
 root = tk.Tk()
 root.title("Buscador de Torrents")
+root.geometry("600x400")
 
 frame = ttk.Frame(root, padding="10")
 frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
