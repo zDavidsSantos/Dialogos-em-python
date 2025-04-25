@@ -10,7 +10,7 @@ def buscar_torrents(termo):
             torrents = resposta.json()
             if torrents:
                 resultados.delete(*resultados.get_children())  # Limpa os resultados anteriores
-                for i, torrent in enumerate(torrents[:10], start=1):  # Mostra os 10 primeiros resultados
+                for i, torrent in enumerate(torrents[:20], start=1):  # Mostra os 20 primeiros resultados
                     resultados.insert("", "end", values=(
                         torrent['name'], torrent['seeders'], torrent['leechers'], f"magnet:?xt=urn:btih:{torrent['info_hash']}"
                     ))
