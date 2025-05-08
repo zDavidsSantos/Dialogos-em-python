@@ -40,7 +40,7 @@ class App:
         for idx, label in enumerate(self.labels):
             tk.Label(root, text=label).grid(row=idx, column=0, padx=10, pady=5, sticky="w")
             if label == "Tipo de Produto":
-                combobox = ttk.Combobox(root, values=["Eletrônico", "Mecânico", "Outro"], state="readonly", width=37)
+                combobox = ttk.Combobox(root, values=["Eletrônico", "Mecânico", "Chiller", "Placa Eletrônica"], state="readonly", width=37)
                 combobox.grid(row=idx, column=1, padx=10, pady=5)
                 self.entries[label] = combobox
             else:
@@ -116,7 +116,7 @@ class App:
                         if label != "Número de Série":
                             tk.Label(janela_edicao, text=label).grid(row=idx + 1, column=0, padx=10, pady=5, sticky="w")
                             if label == "Tipo de Produto":
-                                combobox = ttk.Combobox(janela_edicao, values=["Eletrônico", "Mecânico", "Outro"], state="readonly", width=37)
+                                combobox = ttk.Combobox(janela_edicao, values=["Eletrônico", "Mecânico", "Chiller", "Placa Eletrônica"], state="readonly", width=37)
                                 combobox.grid(row=idx + 1, column=1, padx=10, pady=5)
                                 combobox.set(getattr(equipamento, label.lower().replace(" ", "_")))
                                 self.entries[label] = combobox
