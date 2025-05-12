@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Cadastro</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #021736;
+            color: #4b2e83;
+            margin: 100px;
+            padding: 250px ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: #1b0238;
+            border: 2px solid #4b2e83;
+            border-radius: 10px;
+            padding: 50px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea, input, select {
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #4b2e83;
+            border-radius: 5px;
+            font-family: 'Georgia', serif;
+        }
+        button {
+            background-color: #4b2e83;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3a2366;
+        }
+    </style>
+</head>
+<body>
+    <form id="cadastroForm">
+        <h1>Ficha de Cadastro</h1>
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required><br>
+
+        <label for="tecnico">Técnico:</label>
+        <input type="text" id="tecnico" name="tecnico" required><br>
+
+        <label for="cliente">Cliente:</label>
+        <input type="text" id="cliente" name="cliente" required><br>
+
+        <label for="produto">Produto:</label>
+        <input type="text" id="produto" name="produto" required><br>
+
+        <label for="numero_serie">Número de Série:</label>
+        <input type="text" id="numero_serie" name="numero_serie" required><br>
+
+        <label for="estado_produto">Estado do Produto:</label>
+        <select id="estado_produto" name="estado_produto" required>
+            <option value="novo">Novo</option>
+            <option value="usado">Usado</option>
+            <option value="danificado">Danificado</option>
+        </select><br>
+
+        <label for="itens_acompanhamento">Itens que Acompanham o Produto:</label>
+        <textarea id="itens_acompanhamento" name="itens_acompanhamento" rows="3" required></textarea><br>
+
+        <label for="defeito_reclamado">Defeito Reclamado:</label>
+        <textarea id="defeito_reclamado" name="defeito_reclamado" rows="3" required></textarea><br>
+
+        <label for="defeito_encontrado">Defeito Encontrado:</label>
+        <textarea id="defeito_encontrado" name="defeito_encontrado" rows="3"></textarea><br>
+
+        <label for="pecas_trocadas">Peças Trocadas:</label>
+        <textarea id="pecas_trocadas" name="pecas_trocadas" rows="3"></textarea><br>
+
+        <button type="button" onclick="salvarComoTxt()">Salvar como TXT</button>
+    </form>
+
+    <script>
+        function salvarComoTxt() {
+            const form = document.getElementById('cadastroForm');
+            const formData = new FormData(form);
+            let conteudo = '******************************\n';
+
+            for (const [key, value] of formData.entries()) {
+                conteudo += `* ${key}: ${value}\n`;
+            }
+
+            conteudo += '******************************\n';
+
+            const cliente = formData.get('cliente') || 'cliente';
+            const data = formData.get('data') || 'data';
+            const nomeArquivo = `${cliente}_${data}.txt`.replace(/[/\\?%*:|"<>]/g, '-');
+
+            const blob = new Blob([conteudo], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = nomeArquivo;
+            link.click();
+        }
+    </script>
+</body>
+</html>
