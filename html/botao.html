@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão com Objeto Girando</title>
+    <style>
+        .rotating-object {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            display: none;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button onclick="generateRotatingObject()">Clique para gerar objeto girando</button>
+    <div id="rotating-object" class="rotating-object"></div>
+
+    <script>
+        function generateRotatingObject() {
+            const object = document.getElementById('rotating-object');
+            const shapes = [
+                { width: '100px', height: '100px', borderRadius: '0', backgroundColor: 'blue' },
+                { width: '100px', height: '100px', borderRadius: '50%', backgroundColor: 'green' },
+                { width: '120px', height: '60px', borderRadius: '10px', backgroundColor: 'red' },
+                { width: '80px', height: '80px', borderRadius: '20%', backgroundColor: 'purple' },
+                { width: '100px', height: '50px', borderRadius: '0', backgroundColor: 'orange' }
+            ];
+
+            const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+
+            object.style.width = randomShape.width;
+            object.style.height = randomShape.height;
+            object.style.borderRadius = randomShape.borderRadius;
+            object.style.backgroundColor = randomShape.backgroundColor;
+            object.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
