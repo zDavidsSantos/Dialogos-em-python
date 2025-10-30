@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Enciclopédia — Python (linguagem de programação)</title>
+    <style>
+        :root{
+            --bg:#f8f9fa; --card:#fff; --muted:#6c757d; --link:#0645ad; --accent:#3366cc;
+            --maxw:1100px;
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color:#222;
+        }
+        body{background:var(--bg); margin:0; padding:24px; display:flex; justify-content:center;}
+        .page{max-width:var(--maxw); width:100%;}
+        header{display:flex; align-items:center; gap:18px; margin-bottom:18px;}
+        .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color: inherit;}
+        .logo{
+            width:48px; height:48px; border-radius:4px; background:linear-gradient(135deg,#e9eefc,#d9e6ff);
+            display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);
+            box-shadow:0 1px 0 rgba(0,0,0,.06) inset;
+        }
+        .search{margin-left:auto;}
+        .search input{
+            width:260px; padding:8px 10px; border:1px solid #cfd8e3; border-radius:18px; outline:none;
+            background:#fff;
+        }
+        main{display:flex; gap:24px;}
+        nav.sidebar{
+            width:220px; background:var(--card); border:1px solid #e6e9ef; padding:12px; border-radius:6px;
+            height:fit-content; font-size:14px;
+        }
+        nav.sidebar a{display:block; color:var(--link); text-decoration:none; padding:6px 4px; border-radius:4px;}
+        nav.sidebar a:hover{background:#f1f5fb;}
+        article.content{flex:1; background:var(--card); padding:20px; border-radius:6px; border:1px solid #e6e9ef;}
+        h1{font-size:28px; margin:0 0 6px 0; font-family: "Georgia", serif;}
+        .meta{color:var(--muted); font-size:13px; margin-bottom:12px;}
+        .lead{font-size:16px; margin-bottom:12px; line-height:1.5;}
+        .infobox{
+            float:right; width:260px; margin-left:18px; margin-bottom:10px; border:1px solid #d8dee9; background:#fbfdff;
+            padding:10px; border-radius:4px; font-size:13px;
+        }
+        .infobox img{width:100%; height:auto; border-radius:3px; margin-bottom:8px;}
+        .toc{border:1px solid #e6ecf5; background:#fafcfe; padding:8px; margin-bottom:14px; font-size:14px;}
+        .toc a{display:block; color:var(--link); text-decoration:none; padding:4px 0;}
+        section{margin-bottom:18px;}
+        section h2{font-size:18px; margin:12px 0 8px; border-bottom:1px solid #eee; padding-bottom:6px;}
+        p{line-height:1.6; margin:0 0 10px;}
+        ul{margin:0 0 10px 18px;}
+        footer{margin-top:18px; color:var(--muted); font-size:13px; text-align:center;}
+        @media (max-width:880px){
+            main{flex-direction:column;}
+            .infobox{float:none; width:auto; margin:0 0 12px 0;}
+            nav.sidebar{order:2; width:100%;}
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <a class="brand" href="#">
+                <div class="logo">E</div>
+                <div>
+                    <div style="font-weight:700">Enciclopédia Livre</div>
+                    <div style="font-size:13px;color:var(--muted)">Uma visão geral colaborativa</div>
+                </div>
+            </a>
+
+            <form class="search" onsubmit="event.preventDefault(); alert('Pesquisar não implementado');">
+                <input type="search" placeholder="Pesquisar nesta enciclopédia…" aria-label="Pesquisar" />
+            </form>
+        </header>
+
+        <main>
+            <nav class="sidebar" aria-label="Navegação principal">
+                <a href="#">Página principal</a>
+                <a href="#">Portal da comunidade</a>
+                <a href="#">Alterações recentes</a>
+                <a href="#">Artigos novos</a>
+                <a href="#">Ajuda</a>
+                <hr style="border:none;border-top:1px solid #eef2f6;margin:8px 0"/>
+                <div style="font-size:13px;color:var(--muted)">Idiomas</div>
+                <a href="#">English</a>
+                <a href="#">Español</a>
+                <a href="#">Français</a>
+            </nav>
+
+            <article class="content" aria-labelledby="title">
+                <h1 id="title">Python (linguagem de programação)</h1>
+                <div class="meta">Última modificação: 10 de outubro de 2025 — Leitura: 7 min</div>
+
+                <div class="infobox" aria-labelledby="infobox-title">
+                    <div id="infobox-title" style="font-weight:700; margin-bottom:6px">Python</div>
+                    <img src="https://via.placeholder.com/260x150?text=Imagem" alt="Exemplo de imagem" />
+                    <div><strong>Paradigmas:</strong> Programação orientada a objetos, imperativa, funcional</div>
+                    <div><strong>Primeira versão:</strong> 1991</div>
+                    <div><strong>Autor:</strong> Guido van Rossum</div>
+                    <div style="margin-top:6px;"><a href="#" style="color:var(--link)">Saiba mais</a></div>
+                </div>
+
+                <p class="lead">Python é uma linguagem de programação de alto nível, interpretada, com tipagem dinâmica e forte ênfase em legibilidade e produtividade. É amplamente usada em desenvolvimento web, ciência de dados, automação, entre outros.</p>
+
+                <div class="toc" aria-label="Sumário">
+                    <strong>Sumário</strong>
+                    <a href="#historia">1 História</a>
+                    <a href="#caracteristicas">2 Características</a>
+                    <a href="#exemplo">3 Exemplo de código</a>
+                    <a href="#veja-tambem">4 Veja também</a>
+                    <a href="#referencias">5 Referências</a>
+                </div>
+
+                <section id="historia">
+                    <h2>História</h2>
+                    <p>Python foi criado por Guido van Rossum no final da década de 1980 e lançado em 1991. Desde então, evoluiu através de contribuições da comunidade, com grandes marcos como as versões 2.x e a transição para 3.x, que introduziu mudanças incompatíveis para melhorar a linguagem a longo prazo.</p>
+                </section>
+
+                <section id="caracteristicas">
+                    <h2>Características</h2>
+                    <ul>
+                        <li>Sintaxe clara e legível.</li>
+                        <li>Ampla biblioteca padrão.</li>
+                        <li>Grande ecossistema de pacotes (PyPI).</li>
+                        <li>Tipagem dinâmica e gerenciamento automático de memória.</li>
+                    </ul>
+                </section>
+
+                <section id="exemplo">
+                    <h2>Exemplo de código</h2>
+                    <p>Exemplo simples em Python:</p>
+                    <pre style="background:#f6f8fb;border:1px solid #e6ecf5;padding:10px;border-radius:6px;overflow:auto">
+# Imprime os números pares de 0 a 10
+for i in range(11):
+        if i % 2 == 0:
+                print(i)
+                    </pre>
+                </section>
+
+                <section id="veja-tambem">
+                    <h2>Veja também</h2>
+                    <ul>
+                        <li><a href="#">Programação orientada a objetos</a></li>
+                        <li><a href="#">Ciência de dados</a></li>
+                        <li><a href="#">Frameworks web</a></li>
+                    </ul>
+                </section>
+
+                <section id="referencias">
+                    <h2>Referências</h2>
+                    <p style="font-size:13px;color:var(--muted)">Conteúdo resumido e de exemplo. Para uma enciclopédia real procure fontes e documentação oficial.</p>
+                </section>
+
+                <div style="clear:both"></div>
+
+                <footer>
+                    Enciclopédia — Conteúdo de exemplo. Página criada para demonstração de layout.
+                </footer>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

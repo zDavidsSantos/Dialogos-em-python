@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gazeta Mística — Jornal da Academia de Magia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Libre+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --paper:#f3ecd7;
+            --ink:#222;
+            --accent:#6b4f2f;
+            --sep: rgba(0,0,0,0.08);
+        }
+
+        html,body{height:100%;margin:0;background:
+            linear-gradient(180deg,#efe6cf 0%,#f9f6ee 20%, #efe6cf 100%); color:var(--ink);
+            font-family:"Libre Serif", serif; -webkit-font-smoothing:antialiased;
+        }
+
+        /* page */
+        .page{
+            max-width:1100px;
+            margin:28px auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+            padding:28px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-radius:8px;
+            border:1px solid var(--sep);
+            position:relative;
+            overflow:hidden;
+        }
+
+        /* masthead */
+        .masthead{
+            display:flex;
+            align-items:center;
+            gap:18px;
+            margin-bottom:18px;
+        }
+        .masthead .logo{
+            width:120px;height:120px;
+            background:linear-gradient(135deg,#fff7ea,#f1e3c6);
+            border-radius:14px;
+            display:flex;align-items:center;justify-content:center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08) inset;
+            border:1px solid var(--sep);
+            position:relative;
+            overflow:visible;
+        }
+        .masthead h1{
+            font-family:"Cinzel", serif;
+            margin:0;
+            color:var(--accent);
+            font-size:44px;
+            letter-spacing:2px;
+            transform-origin:left center;
+            animation: floatTitle 6s ease-in-out infinite;
+        }
+        @keyframes floatTitle{
+            0%{transform:translateY(0) rotate(-0.5deg)}
+            50%{transform:translateY(-6px) rotate(0.5deg)}
+            100%{transform:translateY(0) rotate(-0.5deg)}
+        }
+        .masthead .sub{
+            color:#6b6b6b;
+            margin-top:6px;
+            font-size:14px;
+        }
+
+        /* layout */
+        .content{
+            display:grid;
+            grid-template-columns: 1fr 340px;
+            gap:18px;
+        }
+
+        /* main column looks like old paper with columns */
+        .main{
+            background:linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            padding:18px;
+            border-radius:6px;
+            column-count:2;
+            column-gap:28px;
+            column-rule: 1px solid var(--sep);
+            font-size:16px;
+            line-height:1.55;
+        }
+        .main h2{
+            font-family:"Cinzel", serif;
+            font-size:20px;
+            margin:0 0 8px 0;
+            color:var(--accent);
+            break-inside:avoid;
+        }
+        .dropcap{
+            float:left;
+            font-size:64px;
+            line-height:54px;
+            font-weight:700;
+            margin-right:10px;
+            color:var(--accent);
+            font-family:"Cinzel", serif;
+            transform:translateY(6px);
+        }
+        .article{
+            margin-bottom:26px;
+            break-inside:avoid;
+            position:relative;
+        }
+
+        /* side bar with moving images */
+        .sidebar{
+            padding:18px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.1));
+            border-radius:6px;
+            min-height:360px;
+            position:relative;
+            overflow:hidden;
+        }
+        .widget-title{
+            font-weight:700;
+            color:var(--accent);
+            margin:0 0 10px 0;
+            font-family:"Cinzel", serif;
+        }
+
+        /* floating decorative images */
+        .sprite{
+            position:absolute;
+            width:96px;height:96px;
+            pointer-events:none;
+            transition:transform 1s ease, left 1s ease, top 1s ease;
+            will-change:transform,left,top;
+            filter:drop-shadow(0 6px 12px rgba(0,0,0,0.18));
+        }
+        /* gentle bobbing */
+        .floaty{
+            animation: bob 4s ease-in-out infinite;
+        }
+        @keyframes bob{
+            0%{transform:translateY(0)}
+            50%{transform:translateY(-8px)}
+            100%{transform:translateY(0)}
+        }
+
+        /* small image inside articles */
+        .inline-img{
+            width:100%;
+            max-width:240px;
+            float:right;
+            margin:8px 0 12px 12px;
+            border-radius:8px;
+            border:1px solid var(--sep);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            transition: transform 0.6s ease;
+        }
+        .inline-img:hover{ transform: translateY(-6px) rotate(-1deg); }
+
+        /* footer */
+        .footer{
+            margin-top:18px;
+            font-size:13px;
+            color:#6b6b6b;
+            text-align:center;
+        }
+
+        /* responsive */
+        @media (max-width:960px){
+            .content{grid-template-columns:1fr;}
+            .masthead h1{font-size:32px}
+            .main{column-count:1}
+            .sprite{display:none}
+        }
+    </style>
+</head>
+<body>
+    <div class="page" id="page">
+        <div class="masthead">
+            <div class="logo" aria-hidden="true">
+                <!-- simple SVG crest -->
+                <svg width="86" height="86" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#f0e0c0"/></linearGradient>
+                    </defs>
+                    <rect x="6" y="6" width="88" height="88" rx="12" fill="url(#g)" stroke="#c9b591" stroke-width="3"/>
+                    <g transform="translate(24,20)" fill="#6b4f2f" >
+                        <path d="M2 8c6-6 18-6 24 0l1 7-25 1z"/>
+                        <path d="M8 28c4 4 12 4 16 0l1-9-18 1z"/>
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <h1>Gazeta Mística</h1>
+                <div class="sub">Boletim da Academia de Magia — ed. curiosa</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <main class="main" role="main">
+                <article class="article">
+                    <h2>Enigma no Salão das Chaves</h2>
+                    <p><span class="dropcap">U</span>ma série de chaves encantadas apareceu no Salão Oeste. A diretoria convocou professores e aprendizes para decifrar a sequência que permite abrir um antigo cofre. Moradores relatam sons de sinos e leves brilhos ao anoitecer.</p>
+                    <img class="inline-img" src="data:image/svg+xml;utf8,
+                        <svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'>
+                            <rect width='100%' height='100%' fill='%23f9f4e6'/>
+                            <g transform='translate(80,40)' fill='%236b4f2f'>
+                                <path d='M10 300 C120 40 440 40 560 300 L10 300 Z' />
+                            </g>
+                            <text x='50' y='420' font-family='Libre Serif,serif' font-size='36' fill='%236b4f2f'>Chaves Antigas</text>
+                        </svg>" alt="ilustração chaves encantadas">
+                    <p>Especialistas em runas explicam que o padrão lembra um enigma de multiplicidade — cada chave ressoa com notas diferentes. A comunidade poderá participar do teste de abertura no próximo sábado.</p>
+                </article>
+
+                <article class="article">
+                    <h2>Receitas e Poções: Caldos de Inverno</h2>
+                    <p><span class="dropcap">N</span>a cozinha dos aprendizes, uma sopa que aquece e ilumina teve seu segredo revelado: caldos de raízes, pétalas de chá luminescente e um toque de pó de cometa (substituível por raiz-do-ventre em tempos de economia).</p>
+                    <p>Veja a receita sugerida, simplificada para fornos e panelas muggles — a mistura borbulha por 12 minutos em fogo lento, até o aroma invadir os corredores.</p>
+                </article>
+
+                <article class="article">
+                    <h2>Cartógrafo Errante: mapas que mudam</h2>
+                    <p><span class="dropcap">A</span>s paredes do corredor labiríntico agora exibem mapas que se redesenham à medida que você observa. Especialistas aconselham marcar pontos com tinta permanente para evitar perder trilhas.</p>
+                    <p>Entrevistamos o cartógrafo responsável, que diz: "Os mapas são tímidos; movem-se conforme desejam ser descobertos".</p>
+                </article>
+            </main>
+
+            <aside class="sidebar" aria-labelledby="sidebar-title">
+                <h3 id="sidebar-title" class="widget-title">Cartas & Curiosidades</h3>
+                <p><strong>Mensagem do Oráculo:</strong> ouça atentamente esta noite — palavras que sussurram podem virar rotas.</p>
+
+                <div style="height:18px"></div>
+
+                <div style="position:relative; height:220px; border-radius:8px; overflow:hidden; background:
+                    linear-gradient(135deg,#fffaf0,#f6edd6); border:1px dashed var(--sep); padding:12px;">
+                    <p style="margin:0 0 8px 0;">Galeria de artefatos (clique para mover)</p>
+                    <!-- clickable images that will jump around -->
+                    <img src="data:image/svg+xml;utf8,
+                        <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
+                            <rect width='100%' height='100%' rx='14' fill='%23fff7ea' stroke='%23e6d5b0'/>
+                            <g transform='translate(30,30)' fill='%236b4f2f'>
+                                <circle cx='20' cy='20' r='18'/>
+                                <rect x='40' y='8' width='60' height='40' rx='6'/>
+                                <path d='M12 60 q60 20 108 0' stroke='%236b4f2f' stroke-width='6' fill='none'/>
+                            </g>
+                        </svg>" class="movable" style="position:absolute; left:18px; top:46px; width:86px; height:86px; border-radius:8px; cursor:pointer;" alt="artefato 1" />
+                    <img src="data:image/svg+xml;utf8,
+                        <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
+                            <rect width='100%' height='100%' rx='12' fill='%23f6f0e0' stroke='%23e6d5b0'/>
+                            <g transform='translate(24,24)' fill='%236b4f2f'>
+                                <path d='M10 80 L40 10 L70 80 Z' />
+                                <circle cx='68' cy='24' r='6' fill='%23d9c2a0'/>
+                            </g>
+                        </svg>" class="movable" style="position:absolute; left:120px; top:18px; width:72px; height:72px; border-radius:8px; cursor:pointer;" alt="artefato 2" />
+                </div>
+
+                <div style="height:22px"></div>
+
+                <p style="font-size:14px; color:#555">Últimas notas: feira de ervas no pátio central. Troca de livros no átrio no domingo.</p>
+            </aside>
+        </div>
+
+        <div class="footer">Gazeta Mística — Folha de Notícias Mágicas • Edição experimental</div>
+
+        <!-- decorative sprites that move around the page -->
+        <svg class="sprite floaty" id="owl" viewBox="0 0 64 64" style="left:18px; top: -24px;">
+            <g fill="#fffdf6" stroke="#6b4f2f" stroke-width="1.6">
+                <ellipse cx="32" cy="32" rx="24" ry="22" />
+                <circle cx="24" cy="28" r="4" fill="#222"/>
+                <circle cx="40" cy="28" r="4" fill="#222"/>
+                <path d="M20 44c8 6 20 6 28 0" fill="none"/>
+            </g>
+        </svg>
+
+        <svg class="sprite floaty" id="broom" viewBox="0 0 64 64" style="right: -36px; top: 10px; width:130px; height:40px;">
+            <g fill="none" stroke="#6b4f2f" stroke-width="2">
+                <path d="M4 32 C20 22 44 22 60 32" />
+                <path d="M50 28 L62 46 L52 48 L44 36" fill="#e6cf9a" stroke="rgba(0,0,0,0.06)"/>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+        // Move decorative sprites in a slow wandering motion
+        (function(){
+            const page = document.getElementById('page');
+            const sprites = Array.from(page.querySelectorAll('.sprite'));
+            function placeSprites(){
+                const rect = page.getBoundingClientRect();
+                sprites.forEach((el, i) => {
+                    const w = el.offsetWidth || 80;
+                    const h = el.offsetHeight || 80;
+                    const padding = 8;
+                    const left = Math.random() * (rect.width - w - padding*2) + padding;
+                    const top = Math.random() * (rect.height*0.5 - h - padding) + padding - 20;
+                    el.style.left = left + 'px';
+                    el.style.top = top + 'px';
+                });
+            }
+            // initial
+            placeSprites();
+            // slowly reposition every 6 seconds with smooth transition
+            setInterval(placeSprites, 6000);
+
+            // make "movable" images jump to random positions inside their parent when clicked
+            const movables = Array.from(document.querySelectorAll('.movable'));
+            movables.forEach(img=>{
+                img.addEventListener('click', ()=>{
+                    const parent = img.parentElement;
+                    const pr = parent.getBoundingClientRect();
+                    const iw = img.offsetWidth, ih = img.offsetHeight;
+                    const left = Math.random() * (pr.width - iw - 12) + 6;
+                    const top = Math.random() * (pr.height - ih - 12) + 6;
+                    img.style.left = left + 'px';
+                    img.style.top = top + 'px';
+                });
+            });
+
+            // small keyboard shortcut: press "M" to shuffle movables
+            window.addEventListener('keydown', (e)=>{
+                if(e.key.toLowerCase() === 'm'){
+                    movables.forEach(img=> img.click());
+                }
+            });
+
+            // subtle parallax while moving mouse
+            page.addEventListener('mousemove', (ev)=>{
+                const cx = ev.clientX / window.innerWidth - 0.5;
+                const cy = ev.clientY / window.innerHeight - 0.5;
+                sprites.forEach((el, idx)=>{
+                    const depth = (idx + 1) * 6;
+                    el.style.transform = `translate(${cx * depth}px, ${cy * depth}px)`;
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
